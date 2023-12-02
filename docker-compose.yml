@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  my-spring:
+    image: jetty:10.0.17-jdk11
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./target/DevOps-0.0.1-SNAPSHOT.war:/var/lib/jetty/webapps/root.war
