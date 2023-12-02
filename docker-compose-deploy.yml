@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  # http://localhost:8080/
+  backend:
+    build: .
+    container_name: 'backend-container'
+    ports:
+      - "8080:8080"
+    depends_on:
+      database:
+        condition: service_healthy
+    networks:
+      - testnet
+
+  database:
+    image: mysql:8.0.35
+    container_name: 'database-container'
+    environment:
+      MYSQL_ROOT_PASSWORD: user
+      MYSQL_DATABASE: devOps
+    volumes:
+      - mysql-volume:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - testnet
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 20s
+      retries: 10
+
+  frontend:
+    build: ./view
+    container_name: 'frontend-container'
+    ports:
+      - "3000:80"
+    networks:
+      - testnet
+
+networks:
+  testnet:
+
+volumes:
+  mysql-volume:
+
