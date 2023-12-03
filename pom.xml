@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<cargo.plugin.version>1.10.10</cargo.plugin.version>
+		<springdoc.version>1.7.0</springdoc.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -48,7 +49,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>${springdoc.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
