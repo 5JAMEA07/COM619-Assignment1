@@ -9,11 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 import javax.persistence.Embedded;
 
-
-/**
- *
- * @author Abraham
- */
 @Entity
 public class User {
 
