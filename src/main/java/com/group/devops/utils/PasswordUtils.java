@@ -2,10 +2,7 @@ package com.group.devops.utils;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-/**
- *
- * @author Abraham
- */
+
 public class PasswordUtils {
 
     public static String hashPassword(String password){

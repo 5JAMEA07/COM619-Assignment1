@@ -1,10 +1,9 @@
 import React from 'react';
-import TodoList from './TodoList'; // Adjust the path based on your file structure
 
 function App() {
   return (
       <div className="App">
-        <TodoList />
+        <h1>Hello</h1>
       </div>
   );
 }

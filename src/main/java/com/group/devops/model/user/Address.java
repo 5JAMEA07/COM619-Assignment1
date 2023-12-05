@@ -2,10 +2,6 @@ package com.group.devops.model.user;
 
 import javax.persistence.Embeddable;
 
-/**
- *
- * @author Abraham
- */
 @Embeddable
 public class Address {
 
