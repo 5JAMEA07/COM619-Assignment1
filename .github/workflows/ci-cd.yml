@@ -2,7 +2,9 @@ name: CI/CD Workflow
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "development" ]
+  pull_request:
+    branches: [ "development" ]
 
 jobs:
   initial-setup-and-deploy:
