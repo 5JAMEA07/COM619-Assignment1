@@ -1,0 +1,33 @@
+name: CI/CD Workflow
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  initial-setup-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Setup Java environment
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      # Backend build and test
+      - name: Build and test backend
+        run: mvn clean install -DskipTests
+
+      # Docker Compose Build and Up
+      - name: Docker Compose Build and Up
+        run: |
+          docker-compose -f docker-compose-deploy.yml build
+          docker-compose -f docker-compose-deploy.yml up
+
+      # Deploy
+      - name: Deploy
+        run: mvn cargo:deploy
