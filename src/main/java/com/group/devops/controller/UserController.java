@@ -38,6 +38,7 @@ public class UserController {
             userService.signupUser(request);
             return ResponseEntity.ok("User registered successfully");
         } catch (Exception e) {
+            LOG.error("Error during registration: " + e.getMessage());
             return ResponseEntity.badRequest().body("Error during registration: " + e.getMessage());
         }
     }
