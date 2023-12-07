@@ -4,6 +4,7 @@ services:
   # http://localhost:8080/
   backend:
     build: .
+    image: genius390/backend:latest
     volumes:
       - photo-storage-volume:/app
     container_name: 'backend-container'
@@ -38,6 +39,7 @@ services:
 
   frontend:
     build: ./view
+    image: genius390/frontend:latest
     container_name: 'frontend-container'
     ports:
       - "3000:80"
