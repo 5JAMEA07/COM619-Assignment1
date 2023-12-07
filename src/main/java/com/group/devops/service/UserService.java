@@ -36,11 +36,18 @@ public class UserService {
     }
 
     public void signupUser(SignUpRequest request) {
-        User newUser = new User();
-        newUser.setUsername(request.getUsername());
-        newUser.setPassword(request.getPassword());
-        // Set other properties from request to newUser
-        userRepository.save(newUser);
+        User user = userRepository.findByUsername(request.getUsername());
+        if (user == null) {
+            User newUser = new User();
+            newUser.setUsername(request.getUsername());
+            newUser.setPassword(request.getPassword());
+            // Set other properties from request to newUser
+            userRepository.save(newUser);
+        }else {
+            LOG.error("Invalid username or password");
+            throw new RuntimeException("user already exist");
+        }
+
     }
 
 }

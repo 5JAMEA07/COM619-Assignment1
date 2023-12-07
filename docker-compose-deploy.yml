@@ -4,14 +4,19 @@ services:
   # http://localhost:8080/
   backend:
     build: .
+    volumes:
+      - photo-storage-volume:/app
     container_name: 'backend-container'
     ports:
       - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
     depends_on:
       database:
         condition: service_healthy
     networks:
       - testnet
+
 
   database:
     image: mysql:8.0.35
@@ -44,4 +49,5 @@ networks:
 
 volumes:
   mysql-volume:
+  photo-storage-volume:
 

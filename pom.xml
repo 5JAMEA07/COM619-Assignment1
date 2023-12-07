@@ -19,6 +19,7 @@
 		<cargo.plugin.version>1.10.10</cargo.plugin.version>
 		<springdoc.version>1.7.0</springdoc.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -74,6 +75,7 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.9.1</version> <!-- Use the latest version available -->
 		</dependency>
+
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
@@ -86,11 +88,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<image>
-						<builder>paketobuildpacks/builder-jammy-base:latest</builder>
-					</image>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.cargo</groupId>
