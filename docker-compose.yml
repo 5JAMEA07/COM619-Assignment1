@@ -4,13 +4,20 @@ services:
   # http://localhost:8080/
   backend:
     build: .
+    image: genius390/backend:latest
     volumes:
       - photo-storage-volume:/app
+      - ./target/DevOps-0.0.1-SNAPSHOT.war:/var/lib/jetty/webapps/root.war
     container_name: 'backend-container'
     ports:
       - "8080:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
     depends_on:
       database:
         condition: service_healthy
@@ -38,9 +45,13 @@ services:
 
   frontend:
     build: ./view
+    image: genius390/frontend:latest
     container_name: 'frontend-container'
     ports:
       - "3000:80"
+    depends_on:
+      backend:
+          condition: service_healthy
     networks:
       - testnet
 
@@ -50,4 +61,3 @@ networks:
 volumes:
   mysql-volume:
   photo-storage-volume:
-
