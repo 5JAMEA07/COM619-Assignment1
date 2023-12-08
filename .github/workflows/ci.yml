@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
 
@@ -28,6 +29,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
@@ -35,5 +38,5 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push Docker image
         run: |
-          docker-compose build
-          docker-compose push
+          docker-compose  build
+          docker-compose  push
