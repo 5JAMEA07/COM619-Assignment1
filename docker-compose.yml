@@ -7,7 +7,6 @@ services:
     image: genius390/backend:latest
     volumes:
       - photo-storage-volume:/app
-      - ./target/DevOps-0.0.1-SNAPSHOT.war:/var/lib/jetty/webapps/root.war
     container_name: 'backend-container'
     ports:
       - "8080:8080"
