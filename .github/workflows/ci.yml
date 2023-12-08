@@ -33,5 +33,5 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push Docker image
         run: |
-          docker-compose  build
-          docker-compose  push
+          docker build -t genius390/backend:latest .
+          docker push genius390/backend:latest
