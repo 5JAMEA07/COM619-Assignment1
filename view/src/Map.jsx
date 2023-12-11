@@ -1,6 +1,6 @@
 import React from 'react';
 
-function App() {
+function Map() {
     const map = L.map ("map1");
 
     const attrib="Map data copyright OpenStreetMap contributors, Open Database Licence";
@@ -10,9 +10,23 @@ function App() {
         { attribution: attrib } ).addTo(map);
 
     map.setView([1,1], 14);
-    return (
-        <div id="map1" style="width:800px; height:600px"> </div>
-    );
+
+    map.on("click", async (e) => {
+        const lat = e.latlng.lat;
+        const lon = e.latlng.lon;
+        const name = prompt("Name");
+        const username = prompt("Username");
+        const description = prompt("Description");
+        const image = prompt("image link");
+
+        const response = await fetch('/upload', {
+            method: 'POST',
+            body: lat, lon, image, username, name, description
+        });
+        return (
+            <div id="map1" style="width:800px; height:600px"></div>
+        );
+    });
 }
 
-export default App;
+export default Map;
