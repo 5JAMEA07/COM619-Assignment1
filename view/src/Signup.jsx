@@ -4,13 +4,13 @@ function Signup() {
     return (
         <div className="Signup">
             <form>
-                <label for="firstname">First name:</label>
+                <label htmlFor="firstname">First name:</label>
                 <input type='text' id='firstname' />
-                <label for="lastname">Last name:</label>
+                <label htmlFor="lastname">Last name:</label>
                 <input type='text' id='lastname' />
-                <label for="username">Username:</label>
+                <label htmlFor="username">Username:</label>
                 <input type='text' id='username' />
-                <label for="password">password:</label>
+                <label htmlFor="password">password:</label>
                 <input type='password' id='password' />
                 <input type="submit" value="Submit" />
             </form>
