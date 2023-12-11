@@ -12,6 +12,7 @@ function Signup() {
                 <input type='text' id='username' />
                 <label for="password">password:</label>
                 <input type='password' id='password' />
+                <input type="submit" value="Submit" />
             </form>
         </div>
     );
