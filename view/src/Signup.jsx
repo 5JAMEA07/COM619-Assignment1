@@ -8,7 +8,7 @@ function Signup() {
                 <input type='text' id='firstname' />
                 <label for="lastname">Last name:</label>
                 <input type='text' id='lastname' />
-                <label for="usernamename">Username:</label>
+                <label for="username">Username:</label>
                 <input type='text' id='username' />
                 <label for="password">password:</label>
                 <input type='password' id='password' />
