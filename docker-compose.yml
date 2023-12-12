@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  backend:
+    build: .
+    image: genius390/backend:latest
+    volumes:
+      - photo-storage-volume:/app
+    container_name: 'backend-container'
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      database:
+        condition: service_healthy
+    networks:
+      - testnet
+
+
+  database:
+    image: mysql:8.0.35
+    container_name: 'database-container'
+    environment:
+      MYSQL_ROOT_PASSWORD: user
+      MYSQL_DATABASE: devOps
+    volumes:
+      - mysql-volume:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - testnet
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 20s
+      retries: 10
+
+  frontend:
+    build: ./view
+    image: genius390/frontend:latest
+    container_name: 'frontend-container'
+    ports:
+      - "3000:80"
+    depends_on:
+      backend:
+          condition: service_healthy
+    networks:
+      - testnet
+
+networks:
+  testnet:
+
+volumes:
+  mysql-volume:
+  photo-storage-volume:
