@@ -16,7 +16,9 @@ jobs:
       - name: Get changed files
         id: set_changed_files
         run: |
-          echo "::set-output name=changed_files::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
+          CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          echo "$CHANGED_FILES"
+          echo "::set-output name=changed_files::$CHANGED_FILES"
 
   build-backend:
     runs-on: ubuntu-latest
