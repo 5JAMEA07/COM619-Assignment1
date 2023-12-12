@@ -75,7 +75,7 @@ public class MapPointController {
             List<MapPoint> mapPoints = mapPointService.getAllMapPointsForUser(username);
             return ResponseEntity.ok(mapPoints);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Could not retrieve map points: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Could not retrieve all map points: " + e.getMessage());
         }
     }
 }

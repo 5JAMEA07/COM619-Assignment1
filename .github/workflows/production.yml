@@ -3,49 +3,47 @@ name: CI/CD Workflow for Production
 on:
   push:
     branches: [ "production" ]
-    paths:
-      - 'src/**/*'
-      - 'Dockerfile'
-      - 'view/**/*'
-      - 'view/Dockerfile'
 
 jobs:
-  build-backend:
+  list-changed-files:
     runs-on: ubuntu-latest
-    if: contains(github.event.push.changed_files, 'src/') || contains(github.event.push.changed_files, 'Dockerfile')
+    outputs:
+      changed_files: ${{ steps.set_changed_files.outputs.changed_files }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v2
+      - name: Get changed files
+        id: set_changed_files
+        run: |
+          echo "::set-output name=changed_files::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
+
+  build-backend:
+    runs-on: ubuntu-latest
+    needs: [list-changed-files]
+    if: contains(needs.list-changed-files.outputs.changed_files, 'src/') || contains(needs.list-changed-files.outputs.changed_files, 'Dockerfile')
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
         with:
           java-version: '11'
           distribution: 'adopt'
-
-      - name: Build and test backend
-        run: mvn clean install -DskipTests
-
-      - name: Build and Push Backend Docker Image
-        run: |
+      - run: mvn clean install -DskipTests
+      - run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/backend:latest .
           docker push ${{ secrets.DOCKER_USERNAME }}/backend:latest
 
   build-frontend:
     runs-on: ubuntu-latest
-    if: contains(github.event.push.changed_files, 'view/') || contains(github.event.push.changed_files, 'view/Dockerfile')
+    needs: [list-changed-files]
+    if: contains(needs.list-changed-files.outputs.changed_files, 'view/') || contains(needs.list-changed-files.outputs.changed_files, 'view/Dockerfile')
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Build Frontend
-        run: |
+      - uses: actions/checkout@v2
+      - run: |
           cd view
           npm install
           npm run build
-
-      - name: Build and Push Frontend Docker Image
-        run: |
+      - run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend:latest ./view
           docker push ${{ secrets.DOCKER_USERNAME }}/frontend:latest
 
@@ -53,8 +51,7 @@ jobs:
     needs: [build-backend, build-frontend]
     runs-on: ubuntu-latest
     steps:
-      - name: SSH and Deploy to VM
-        uses: appleboy/ssh-action@master
+      - uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.VM_HOST }}
           username: ${{ secrets.VM_USERNAME }}
