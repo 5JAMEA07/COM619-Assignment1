@@ -6,11 +6,19 @@ function Login() {
         const username = document.getElementById('username')
         const password = document.getElementById('password')
 
-        const response = await fetch('/login', {
+        const response = await fetch('/api/login', {
             method: 'POST',
-            body: username, password
-        });
-    });
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username,
+                password,
+            })
+        })
+        sessionStorage.setItem('token', response.token);
+        sessionStorage.setItem('user', response.user);
+    })
     return(
         <div>
             <Navbar />

@@ -22,11 +22,15 @@ function App() {
         const description = prompt("Description");
         const image = prompt("image link");
 
-        const response = await fetch('/upload', {
+        const response = await fetch('/api/upload', {
             method: 'POST',
-            body: lat, lon, image, username, name, description
-        });
-    })
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+            lat, lon, image, username, name, description
+        })
+    })})
         return (
         <div>
         <Navbar />
