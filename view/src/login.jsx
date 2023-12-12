@@ -13,9 +13,9 @@ function Login() {
     return(
         <div className="loginForm">
             <form>
-                <label for="username">Username:</label>
+                <label htmlFor="username">Username:</label>
                 <input type='text' id='username' />
-                <label for="password">Password:</label>
+                <label htmlFor="password">Password:</label>
                 <input type='password' id='password' />
                 <input id='loginButton' type="submit" value="Submit" />
             </form>

@@ -24,8 +24,10 @@ function App() {
             body: lat, lon, image, username, name, description
         });
         return (
-            <div id="map1" style="width:800px; height:600px"></div>
-        );
+
+        <div id="map1" style="width:800px; height:600px"></div>
+    )
+        ;
     });
 }
 
