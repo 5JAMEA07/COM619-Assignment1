@@ -1,5 +1,6 @@
 package com.group.devops.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.group.devops.utils.PasswordUtils;
 
 import javax.persistence.Entity;
@@ -108,6 +109,7 @@ public class User {
         return PasswordUtils.checkPassword(checkPassword, getHashedPassword());
     }
 
+    @JsonIgnore
     public String getHashedPassword() {
         return hashedPassword;
     }
