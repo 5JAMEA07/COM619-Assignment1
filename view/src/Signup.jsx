@@ -1,7 +1,10 @@
 import React from 'react';
+import Navbar from "./navbar.jsx";
 
 function Signup() {
     return (
+        <div>
+        <Navbar />
         <div className="Signup">
             <form>
                 <label htmlFor="firstname">First name:</label>
@@ -14,6 +17,7 @@ function Signup() {
                 <input type='password' id='password' />
                 <input type="submit" value="Submit" id="submit" />
             </form>
+        </div>
         </div>
     );
 }

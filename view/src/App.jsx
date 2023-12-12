@@ -1,4 +1,7 @@
 import React from 'react';
+import '../style.css'
+import Navbar from "/navbar.jsx";
+
 
 function App() {
     const map = L.map("map1");
@@ -23,12 +26,13 @@ function App() {
             method: 'POST',
             body: lat, lon, image, username, name, description
         });
+    })
         return (
-
+        <div>
+        <Navbar />
         <div id="map1" style="width:800px; height:600px"></div>
+        </div>
     )
-        ;
-    });
 }
 
 export default App;

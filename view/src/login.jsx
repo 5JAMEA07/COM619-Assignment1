@@ -1,4 +1,5 @@
 import react from 'react'
+import Navbar from "./navbar.jsx";
 
 function Login() {
     document.getElementById('loginButton').addEventListener("click", async e => {
@@ -11,6 +12,8 @@ function Login() {
         });
     });
     return(
+        <div>
+            <Navbar />
         <div className="loginForm">
             <form>
                 <label htmlFor="username">Username:</label>
@@ -19,6 +22,7 @@ function Login() {
                 <input type='password' id='password' />
                 <input id='loginButton' type="submit" value="Submit" />
             </form>
+        </div>
         </div>
     )
 }
