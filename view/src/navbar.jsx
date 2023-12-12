@@ -17,6 +17,9 @@ if (response != null) {
                 <Link to="/about.jsx">About</Link>
             </li>
             <li style="float:right">
+                <Link to="./viewModifyUser.jsx">Modify User</Link>
+            </li>
+            <li style="float:right">
                 <Link to="./Signout.jsx">Signout</Link>
             </li>
         </ul>
