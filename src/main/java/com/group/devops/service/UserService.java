@@ -6,10 +6,14 @@ import com.group.devops.model.dto.LoginResponse;
 import com.group.devops.model.user.User;
 import com.group.devops.repository.UserRepository;
 import com.group.devops.utils.JwtUtils;
+import com.group.devops.model.user.UserRole;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestHeader;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -49,5 +53,19 @@ public class UserService {
         }
 
     }
+
+    public boolean authStatus(@RequestHeader("Authorization") String authHeader) {
+        return JwtUtils.isTokenValid(authHeader);
+    }
+
+    public boolean isAdmin(String username) {
+        User user = userRepository.findByUsername(username);
+        return user != null && UserRole.ADMINISTRATOR.equals(user.getUserRole());
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
 
 }
