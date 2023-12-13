@@ -20,15 +20,19 @@ function App() {
         const name = prompt("Name");
         const username = prompt("Username");
         const description = prompt("Description");
-        const image = prompt("image link");
 
-        const response = await fetch('/api/upload', {
+        const response = await fetch('/api/uploadWithoutImage', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             },
             body: JSON.stringify({
-            lat, lon, image, username, name, description
+            lat,
+            lon,
+            username,
+            name,
+            description
         })
     })})
         return (
