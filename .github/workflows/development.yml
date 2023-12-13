@@ -24,7 +24,7 @@ jobs:
   build-backend:
     runs-on: ubuntu-latest
     needs: [list-changed-files]
-    if: contains(needs.list-changed-files.outputs.changed_files, 'src/') || contains(needs.list-changed-files.outputs.changed_files, 'Dockerfile')
+    if: contains(needs.list-changed-files.outputs.changed_files, 'src/**/*') || contains(needs.list-changed-files.outputs.changed_files, 'Dockerfile')
     steps:
       - uses: actions/setup-java@v2
         with:
@@ -36,7 +36,7 @@ jobs:
   build-frontend:
     runs-on: ubuntu-latest
     needs: [list-changed-files]
-    if: contains(needs.list-changed-files.outputs.changed_files, 'view/') || contains(needs.list-changed-files.outputs.changed_files, 'view/Dockerfile')
+    if: contains(needs.list-changed-files.outputs.changed_files, 'view/**/*') || contains(needs.list-changed-files.outputs.changed_files, 'view/Dockerfile')
     steps:
       - run: |
           cd view
