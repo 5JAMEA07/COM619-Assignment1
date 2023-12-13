@@ -55,7 +55,7 @@ public class UserController {
 
 
         if (userService.isAdmin(username)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access Denied: User is not an Administrator");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access Denied: User is not an Administrator Role");
         }
 
         try {
