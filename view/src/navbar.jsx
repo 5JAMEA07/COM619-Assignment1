@@ -16,6 +16,9 @@ if (response != null) {
             <li>
                 <Link to="/about.jsx">About</Link>
             </li>
+            <li>
+                <Link to="./viewMapPoints.jsx">POI's</Link>
+            </li>
             <li style="float:right">
                 <Link to="./viewModifyUser.jsx">Modify User</Link>
             </li>
@@ -24,7 +27,34 @@ if (response != null) {
             </li>
         </ul>
     )
-} else {
+} else if (response != null && sessionStorage.getItem('user.userRole') =='ADMINISTRATOR') {
+    return (
+        <ul id='navigation'>
+            <li>
+                <Link to="/main.jsx">Home</Link>
+            </li>
+            <li>
+                <Link to="/contact.jsx">Contact</Link>
+            </li>
+            <li>
+                <Link to="/about.jsx">About</Link>
+            </li>
+            <li>
+                <Link to="./viewMapPoints.jsx">POI's</Link>
+            </li>
+            <li>
+                <Link to="./allUsers.jsx">All Users</Link>
+            </li>
+            <li style="float:right">
+                <Link to="./viewModifyUser.jsx">Modify User</Link>
+            </li>
+            <li style="float:right">
+                <Link to="./Signout.jsx">Signout</Link>
+            </li>
+        </ul>
+    )
+}
+else {
     return (
             <ul id='navigation'>
                 <li>

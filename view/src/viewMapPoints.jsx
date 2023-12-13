@@ -48,12 +48,17 @@ const viewMapPoints = () => {
                     </tr>
                 </thread>
                 <tbody>
-                {mapPoints.map((point, index) => (
+                {mapPoints.map((Poi, index) => (
                     <tr key={index}>
-                        <td>{point.name}</td>
-                        <td>{point.latitude}</td>
-                        <td>{point.longitude}</td>
-                        <td>{point.description}</td>
+                        <form action='/api/updateMapPointWithImage' method="POST">
+                            <input type="hidden" id="id" value={Poi.id} />
+                        <td><input type="text" id="name" value={Poi.id}/></td>
+                        <td><input type="text" id="description" value={Poi.description}/></td>
+                        <td><input type="text" id="lat" value={Poi.latitude}/></td>
+                        <td><input type="text" id="lng" value={Poi.longitude}/></td>
+                        <td><input value = {Poi.PhotoUrl} type="file" id="img" name="img" accept="image/*"/></td>
+                            <td><input type="submit" value="Submit"/></td>
+                        </form>
                     </tr>
                 ))}
                 </tbody>
