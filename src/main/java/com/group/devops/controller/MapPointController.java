@@ -64,7 +64,7 @@ public class MapPointController {
     public ResponseEntity<?> getUserMapPoints(@RequestHeader("Authorization") String authHeader,
                                               @RequestParam("username") String username) {
         if (!userService.authStatus(authHeader)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized access");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized access for user");
         }
 
         if (userService.isAdmin(username)) {
