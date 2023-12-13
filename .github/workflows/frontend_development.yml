@@ -1,0 +1,19 @@
+name: Frontend Build Workflow for Development
+
+on:
+  pull_request:
+    branches: [ "development" ]
+    paths:
+      - 'view/**/*'
+      - 'view/Dockerfile'
+
+jobs:
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          cd view
+          npm install
+          npm run build
+      - run: docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend:latest ./view
