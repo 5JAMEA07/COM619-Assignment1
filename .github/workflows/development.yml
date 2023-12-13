@@ -38,7 +38,6 @@ jobs:
     needs: [list-changed-files]
     if: contains(needs.list-changed-files.outputs.changed_files, 'view/') || contains(needs.list-changed-files.outputs.changed_files, 'view/Dockerfile')
     steps:
-      - uses: actions/checkout@v3
       - run: |
           cd view
           npm install
