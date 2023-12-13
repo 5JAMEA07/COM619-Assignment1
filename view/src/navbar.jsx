@@ -16,6 +16,7 @@ if (response != null) {
             <li>
                 <Link to="/about.jsx">About</Link>
             </li>
+
             <li>
                 <Link to="./viewMapPoints.jsx">POI's</Link>
             </li>
@@ -45,16 +46,13 @@ if (response != null) {
             <li>
                 <Link to="./allUsers.jsx">All Users</Link>
             </li>
-            <li style="float:right">
-                <Link to="./viewModifyUser.jsx">Modify User</Link>
-            </li>
-            <li style="float:right">
-                <Link to="./Signout.jsx">Signout</Link>
-            </li>
+
         </ul>
     )
+
 }
 else {
+
     return (
             <ul id='navigation'>
                 <li>
