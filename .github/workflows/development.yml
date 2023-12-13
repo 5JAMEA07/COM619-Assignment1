@@ -26,7 +26,6 @@ jobs:
     needs: [list-changed-files]
     if: contains(needs.list-changed-files.outputs.changed_files, 'src/') || contains(needs.list-changed-files.outputs.changed_files, 'Dockerfile')
     steps:
-      - uses: actions/checkout@v2
       - uses: actions/setup-java@v2
         with:
           java-version: '11'
@@ -39,7 +38,6 @@ jobs:
     needs: [list-changed-files]
     if: contains(needs.list-changed-files.outputs.changed_files, 'view/') || contains(needs.list-changed-files.outputs.changed_files, 'view/Dockerfile')
     steps:
-      - uses: actions/checkout@v2
       - run: |
           cd view
           npm install
