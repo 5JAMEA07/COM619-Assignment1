@@ -31,7 +31,7 @@ const allUsers = () => {
         <div>
             <Navbar />
             <h1>
-                Map Points
+                Users
             </h1>
             <table>
                 <thread>
