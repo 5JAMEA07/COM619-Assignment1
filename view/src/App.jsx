@@ -1,6 +1,7 @@
 import React from 'react';
 import '../style.css'
 import Navbar from "/navbar.jsx";
+import L from 'leaflet';
 
 
 function App() {
