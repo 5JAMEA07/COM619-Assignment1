@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../style.css";
-import response from "login.jsx"
+import response from "./login.jsx"
 
 function Navbar() {
 if (response != null) {
