@@ -19,7 +19,7 @@ async function PoiList() {
     //modify above code to get POI's if endpoint is added
     //modify below form action to edit POI once endpoint is added
 
-    const PoisHtml = results.map(Poi => <form action='/api/updateMapPointWithImage' method="POST"> <li key={Poi.id}><input type="hidden" id="say" value={Poi.id} /> <input type="text" id="name" value={Poi.id}/>, <input type="text" id="description" value={Poi.description}/>, <input type="text" id="lat" value={Poi.lat}/>, <input type="text" id="lng" value={Poi.lng}/>, <input value = {Poi.PhotoUrl} type="file" id="img" name="img" accept="image/*"/> <input type="submit" value="Submit"/></li> </>);
+    const PoisHtml = results.map(Poi => <form action='/api/updateMapPointWithImage' method="POST"> <li key={Poi.id}><input type="hidden" id="id" value={Poi.id} /> <input type="text" id="name" value={Poi.id}/>, <input type="text" id="description" value={Poi.description}/>, <input type="text" id="lat" value={Poi.lat}/>, <input type="text" id="lng" value={Poi.lng}/>, <input value = {Poi.PhotoUrl} type="file" id="img" name="img" accept="image/*"/> <input type="submit" value="Submit"/></li> </form>);
 
 
     return (
