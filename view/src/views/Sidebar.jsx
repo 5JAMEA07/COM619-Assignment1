@@ -11,7 +11,7 @@ const SidebarView = ({ user }) => {
             <Link to="/" className="nav-link">
                 Main Page
             </Link>
-            <a href="/swagger-ui/index.html#/" className="nav-link" target="_blank" rel="noopener noreferrer">
+            <a href="backend-container:8080/swagger-ui/index.html#/" className="nav-link" target="_blank" rel="noopener noreferrer">
                 Swagger API
             </a>
             {user && user.userRole === 'ADMINISTRATOR' && (
