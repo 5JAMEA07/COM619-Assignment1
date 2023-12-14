@@ -1,35 +1,47 @@
 name: Backend CI/CD for Production
 
+# Trigger: Activates on push events to the 'production' branch, specifically for changes in the 'src' directory or Dockerfile.
 on:
   push:
     branches: [ "production" ]
     paths:
-      - 'src/**/*'
-      - 'Dockerfile'
+      - 'src/**/*'   # Monitors changes in any file within the 'src' directory.
+      - 'Dockerfile' # Monitors changes in the Dockerfile.
 
+# Job Definition: Defines a single job for building and deploying the backend.
 jobs:
   build-and-deploy-backend:
+    # Run Environment: Executes the job on the latest Ubuntu runner provided by GitHub.
     runs-on: ubuntu-latest
+
+    # Steps: A sequence of steps that the job will execute.
     steps:
       - uses: actions/checkout@v2
+        # Checkout Step: Checks out the code in the branch to the runner.
+
       - uses: actions/setup-java@v2
         with:
-          java-version: '11'
-          distribution: 'adopt'
-      - run: mvn clean install -DskipTests
+          java-version: '11'         # Java Setup: Configures the runner to use Java 11.
+          distribution: 'adopt'      # Specifies AdoptOpenJDK for the Java setup.
 
-      # Login to DockerHub
+      - run: mvn clean install -DskipTests
+        # Maven Build: Executes a Maven build, skipping tests for faster execution.
+        # Cleans any previous build artifacts, installs dependencies, and builds the project.
+
+      # DockerHub Login: Logs into DockerHub using credentials stored in GitHub secrets.
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      # Docker Build and Push: Builds and pushes Docker images to DockerHub.
       - name: Build and push Docker images
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/backend:latest .
           docker push ${{ secrets.DOCKER_USERNAME }}/backend:latest
 
+      # SSH and Deployment: SSH into a VM and deploys the backend using Docker Compose.
       - name: SSH and Deploy Backend to VM
         uses: appleboy/ssh-action@master
         with:

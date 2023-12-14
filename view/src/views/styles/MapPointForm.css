@@ -1,0 +1,50 @@
+/* MapPointForm.css */
+
+.map-point-form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.map-point-form-container input, .map-point-form-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.map-point-form-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.map-point-form-container button:hover {
+    background-color: #0056b3;
+}
+
+.map-and-form-container {
+    display: flex;
+    align-items: stretch;
+}
+
+.map-container {
+    flex-grow: 1;
+    flex-shrink: 1; /* Allow shrinking if needed */
+}
+
+.map-point-form-container {
+    flex-basis: 300px; /* Adjust width as needed */
+    flex-shrink: 0; /* Prevent shrinking */
+    padding: 20px;
+}

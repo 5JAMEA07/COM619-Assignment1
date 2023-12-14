@@ -20,6 +20,11 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
+/**
+ * Controller for handling user-related operations in a DevOps application.
+ * Provides endpoints for user login, signup, and retrieving all user details.
+ */
+
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -29,6 +34,14 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
+    /**
+     * Authenticates a user and provides a response token upon successful login.
+     *
+     * @param request The login request containing user credentials.
+     * @return A ResponseEntity containing the login response with a token if successful,
+     *         or an error message in case of failure.
+     */
 
     @PostMapping("/login")
     @Operation(summary = "User login", description = "Logs in a user and returns a token")
@@ -46,6 +59,13 @@ public class UserController {
         }
     }
 
+
+    /**
+     * Registers a new user with the provided sign-up details.
+     *
+     * @param request The sign-up request containing user registration information.
+     * @return A ResponseEntity indicating the success or failure of the registration process.
+     */
     @PostMapping("/signup")
     @Operation(summary = "User registration", description = "Registers a new user")
     @ApiResponse(responseCode = "200", description = "User registered successfully",
@@ -62,7 +82,15 @@ public class UserController {
         }
     }
 
-    @GetMapping("/allUsers")
+    /**
+     * Retrieves a list of all users in the system. Requires administrator privileges.
+     * The method checks for authentication and administrator status before proceeding.
+     *
+     * @param authHeader Authorization header for user authentication.
+     * @param request    Login request to verify if the user has admin privileges.
+     * @return A ResponseEntity containing a list of all users or an error message.
+     */
+    @PostMapping("/allUsers")
     @Operation(summary = "Get all users", description = "Retrieves a list of all users. Requires admin privileges.")
     @ApiResponse(responseCode = "200", description = "List of all users",
             content = @Content(mediaType = "application/json",
@@ -74,13 +102,13 @@ public class UserController {
     @ApiResponse(responseCode = "500", description = "Internal server error",
             content = @Content(mediaType = "text/plain"))
     public ResponseEntity<?> getAllUsers(@RequestHeader("Authorization") String authHeader,
-                                         @RequestParam("username") String username) {
-        if (userService.authStatus(authHeader)) {
+                                         @RequestBody @ParameterObject LoginRequest request) {
+        if (!userService.authStatus(authHeader)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized access");
         }
 
 
-        if (userService.isAdmin(username)) {
+        if (!userService.isAdmin(request.getUsername())) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access Denied: User is not an Administrator Role");
         }
 

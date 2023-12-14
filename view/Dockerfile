@@ -1,6 +1,8 @@
     # Build stage for React app
 FROM node:20.10.0 as build
 WORKDIR /view
+
+
 COPY package.json ./
 RUN npm install
 COPY . ./

@@ -14,6 +14,8 @@ import javax.persistence.Embedded;
 @Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(description = "Unique identifier of the user", example = "1")
     private Long id;
 
@@ -44,8 +46,7 @@ public class User {
     @Schema(description = "Flag indicating whether the user account is enabled", example = "true")
     private Boolean enabled = true;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     public Long getId() {
         return id;
     }
