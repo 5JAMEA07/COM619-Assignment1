@@ -15,15 +15,24 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Objects;
 
+/**
+ * Service for handling file storage operations.
+ * This service is responsible for saving files to a specified directory and ensuring file integrity.
+ */
 @Service
 public class FileStorageService {
     final static Logger LOG = LogManager.getLogger(FileStorageService.class);
     private final Path fileStorageLocation;
 
-
+    /**
+     * Creates a new FileStorageService with the specified environment and default storage location.
+     *
+     * @param env The Spring Environment to resolve properties.
+     * @param defaultStorageLocation The default location for file storage.
+     */
     public FileStorageService(Environment env, @Value("${app.file-storage-location}") String defaultStorageLocation) {
         String storageLocation = env.getProperty("app.file-storage-docker-location", defaultStorageLocation);
-        LOG.debug(storageLocation);
+        LOG.debug("Storage location: " + storageLocation);
         this.fileStorageLocation = Paths.get(storageLocation).toAbsolutePath().normalize();
 
         try {
@@ -33,16 +42,23 @@ public class FileStorageService {
         }
     }
 
+    /**
+     * Stores a file in the predefined storage location.
+     *
+     * @param file The MultipartFile to be stored.
+     * @return The path to the stored file.
+     * @throws RuntimeException If the file name is invalid or the file can't be stored.
+     */
     public String storeFile(MultipartFile file) {
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
-        LOG.debug(fileName);
+        LOG.debug("File name: " + fileName);
         try {
             if(fileName.contains("..")) {
                 throw new RuntimeException("Invalid file path");
             }
 
             Path targetLocation = this.fileStorageLocation.resolve(fileName);
-            LOG.debug(targetLocation);
+            LOG.debug("Target location: " + targetLocation);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
             return targetLocation.toString();
@@ -51,4 +67,3 @@ public class FileStorageService {
         }
     }
 }
-

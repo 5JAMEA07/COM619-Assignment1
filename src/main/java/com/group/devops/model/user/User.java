@@ -2,6 +2,7 @@ package com.group.devops.model.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.group.devops.utils.PasswordUtils;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,26 +14,39 @@ import javax.persistence.Embedded;
 @Entity
 public class User {
 
-    private Long id;
-
-    private String firstName = "";
-
-    private String secondName = "";
-
-    private String username = "";
-
-    private String password = "";
-
-    private String hashedPassword = "";
-
-    private Address address;
-
-    private UserRole userRole;
-
-    private Boolean enabled = true;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "Unique identifier of the user", example = "1")
+    private Long id;
+
+    @Schema(description = "First name of the user", example = "John")
+    private String firstName = "";
+
+    @Schema(description = "Second name of the user", example = "Doe")
+    private String secondName = "";
+
+    @Schema(description = "Username for the user", example = "johndoe123")
+    private String username = "";
+
+    @Transient
+    @Schema(description = "Password of the user (transient, not stored in DB)", example = "password")
+    private String password = "";
+
+    @JsonIgnore
+    @Schema(hidden = true)
+    private String hashedPassword = "";
+
+    @Embedded
+    @Schema(description = "Address details of the user")
+    private Address address;
+
+    @Schema(description = "Role of the user in the system", example = "ADMIN")
+    private UserRole userRole;
+
+    @Schema(description = "Flag indicating whether the user account is enabled", example = "true")
+    private Boolean enabled = true;
+
+
     public Long getId() {
         return id;
     }
@@ -90,7 +104,7 @@ public class User {
         this.enabled = enabled;
     }
 
-    // passwords not saved in database only passwordhash is saved
+
     @Transient
     public String getPassword() {
         return password;

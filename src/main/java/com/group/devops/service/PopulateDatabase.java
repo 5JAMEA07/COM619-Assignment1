@@ -29,7 +29,7 @@ public class PopulateDatabase {
     public void initDatabase() {
         LOG.debug("initialising database with startup values");
 
-        // initialising admin and normal user if dont exist
+
         User adminUser = new User();
         adminUser.setUsername(DEFAULT_ADMIN_USERNAME);
         adminUser.setFirstName("default administrator");
