@@ -1,19 +1,31 @@
 name: Frontend Build Workflow for Development
 
+# Trigger: This workflow is activated on pull requests targeting the 'development' branch,
+# specifically for changes in the 'view' directory or the Dockerfile within the 'view' directory.
 on:
   pull_request:
     branches: [ "development" ]
     paths:
-      - 'view/**/*'
-      - 'view/Dockerfile'
+      - 'view/**/*'   # Monitors changes in any file within the 'view' directory.
+      - 'view/Dockerfile' # Monitors changes in the Dockerfile located in the 'view' directory.
 
+# Job Definition: Defines a single job called 'build-frontend'.
 jobs:
   build-frontend:
+    # Run Environment: This job will be executed on the latest Ubuntu runner provided by GitHub.
     runs-on: ubuntu-latest
+
+    # Steps: A sequence of steps that the job will execute.
     steps:
       - uses: actions/checkout@v2
+        # Checkout Step: Checks out the code in the pull request to the runner.
+
       - run: |
           cd view
           npm install
           npm run build
+        # Build Frontend: Changes directory to 'view', installs dependencies, and builds the frontend application.
+
       - run: docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend:latest ./view
+        # Docker Build: Builds a Docker image for the frontend from the 'view' directory.
+        # The image is tagged with the Docker username (from repository's secrets) and marked as 'latest'.

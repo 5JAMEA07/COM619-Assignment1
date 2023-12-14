@@ -1,0 +1,154 @@
+/* General styles */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Top navigation styles */
+.navbar {
+    width: 100%;
+    background-color: #007bff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+}
+
+/* Content wrapper styles */
+#content-wrapper {
+    display: flex;
+    height: calc(100% - 56px); /* Height minus navbar */
+    overflow: hidden; /* Prevent content overflow */
+}
+
+/* Sidebar styles */
+.sidebar {
+    background-color: #2c3e50;
+    width: 250px; /* Sidebar width */
+    height: 100%;
+    position: fixed;
+    top: 56px; /* Below navbar */
+    left: 0;
+    overflow-y: auto;
+    z-index: 1020; /* Below the navbar */
+}
+
+/* Main content styles */
+.main-content {
+    flex-grow: 1;
+    margin-left: 250px; /* Space for sidebar */
+    background-color: #f8f9fa;
+    padding: 1rem;
+    overflow-y: auto; /* Scrollable content */
+}
+
+/* Map container adjustments */
+.leaflet-container {
+    height: 100%; /* Full height of its container */
+    width: 100%;
+}
+
+/* Sidebar link styles */
+.sidebar .nav-link {
+    color: #ffffff;
+    padding: 10px 15px;
+    text-align: left;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #1a252f;
+}
+
+/* Login and signup container styles */
+.login-page-container, .signup-page-container {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1050;
+}
+
+.login-form, .signup-form {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1060; /* Above other content */
+}
+
+.signup-overlay {
+    /* Similar styles as .login-overlay */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1060;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 50px;
+    }
+
+    .main-content {
+        margin-left: 50px; /* Adjust for collapsed sidebar */
+        transition: margin-left 0.5s; /* Smooth transition */
+    }
+
+    .leaflet-container {
+        height: calc(100vh - 56px); /* Adjust for navbar */
+        transition: height 0.5s;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 56px;
+        z-index: 1030;
+    }
+
+    #content-wrapper {
+        margin-top: 0;
+    }
+
+    .login-page-container, .signup-page-container {
+        top: 56px;
+    }
+
+    .login-form, .signup-form {
+        width: 90%;
+    }
+}
+
+/* App.css or your main CSS file */
+
+
+

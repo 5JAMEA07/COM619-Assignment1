@@ -1,20 +1,35 @@
 name: Backend Build Workflow for Development
 
+# This workflow is triggered on pull requests to the 'development' branch,
+# specifically for changes in the 'src' directory or the 'Dockerfile'.
 on:
   pull_request:
     branches: [ "development" ]
     paths:
-      - 'src/**/*'
-      - 'Dockerfile'
+      - 'src/**/*'   # Triggers for any changes in the 'src' directory
+      - 'Dockerfile' # Triggers for any changes in the 'Dockerfile'
 
+# Defines a single job named 'build-backend'.
 jobs:
   build-backend:
+    # This job runs on the latest version of Ubuntu.
     runs-on: ubuntu-latest
+
+    # Steps define a sequence of tasks to be executed.
     steps:
       - uses: actions/checkout@v2
+        # Checks-out your repository under $GITHUB_WORKSPACE, so the job can access it.
+
       - uses: actions/setup-java@v2
         with:
-          java-version: '11'
-          distribution: 'adopt'
+          java-version: '11'         # Sets up Java 11
+          distribution: 'adopt'      # Uses AdoptOpenJDK for the Java installation.
+
       - run: mvn clean install -DskipTests
+        # Runs Maven to clean, install dependencies, and build the project,
+        # skipping unit tests to speed up the build process.
+
       - run: docker build -t ${{ secrets.DOCKER_USERNAME }}/backend:latest .
+        # Builds a Docker image using the Dockerfile in the repo,
+        # tags it with the Docker username from the repository's secrets,
+        # and tags it as 'latest'.
