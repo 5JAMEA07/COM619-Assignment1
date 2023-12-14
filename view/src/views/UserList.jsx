@@ -19,7 +19,7 @@ const UsersList = () => {
                 };
 
                 // Using POST instead of GET
-                const response = await axios.post('/api/allUsers', data, config);
+                const response = await axios.post('backend-container:8080/api/allUsers', data, config);
                 setUsers(response.data);
             } catch (err) {
                 setError('Error fetching users');
