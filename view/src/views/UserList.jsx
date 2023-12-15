@@ -21,6 +21,8 @@ const UsersList = () => {
 
                 // Using POST instead of GET
                 const response = await axios.post('https://kryptonite.uksouth.cloudapp.azure.com/api/allUsers', data, config);
+
+
                 setUsers(response.data);
             } catch (err) {
                 setError('Error fetching users');
