@@ -13,6 +13,7 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .addServersItem(new Server().url("https://kryptonite.uksouth.cloudapp.azure.com"))
+                .addServersItem(new Server().url("http://localhost:8080"))
                 .info(new Info().title("Kryptonite Group API")
                         .description("This Application built by the Kryptonite group allows users to upload geographic points with descriptions of their current geolocation.")
                         .version("v1.0"));
