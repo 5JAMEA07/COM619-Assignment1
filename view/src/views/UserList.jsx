@@ -23,9 +23,6 @@ const UsersList = () => {
                 const response = await axios.post('https://kryptonite.uksouth.cloudapp.azure.com/api/allUsers', data, config);
 
 
-                const response = await axios.post('http://localhost:8080/api/allUsers', data, config);
-
-
                 setUsers(response.data);
             } catch (err) {
                 setError('Error fetching users');
