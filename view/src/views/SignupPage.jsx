@@ -49,7 +49,7 @@ const SignUpPage = ({ onSignUpSuccess, onSignUpFail }) => {
         }
 
         try {
-            const response = await axios.post('http://localhost:8080/api/signup', formData);
+            const response = await axios.post('https://kryptonite.uksouth.cloudapp.azure.com/api/signup', formData);
             // On successful signup, store the token and user data
             sessionStorage.setItem('authToken', response.data.token);
             sessionStorage.setItem('user', JSON.stringify(response.data.user));
