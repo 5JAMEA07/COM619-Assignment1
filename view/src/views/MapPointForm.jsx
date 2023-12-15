@@ -20,7 +20,7 @@ const MapPointForm = ({ latitude, longitude, handleMapPointSubmit }) => {
         };
 
         try {
-            const response = await axios.post(`http://localhost:8080/api/uploadWithoutImage`, data, {
+            const response = await axios.post(`https://kryptonite.uksouth.cloudapp.azure.com/api/uploadWithoutImage`, data, {
                 headers: {
                     Authorization: `Bearer ${userToken}`,
                     'Content-Type': 'application/json'
