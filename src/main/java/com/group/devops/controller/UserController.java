@@ -43,12 +43,13 @@ public class UserController {
      *         or an error message in case of failure.
      */
 
-    @PostMapping("/login")
+
     @Operation(summary = "User login", description = "Logs in a user and returns a token")
     @ApiResponse(responseCode = "200", description = "Successfully logged in",
             content = { @Content(mediaType = "application/json",
                     schema = @Schema(implementation = LoginResponse.class)) })
     @ApiResponse(responseCode = "400", description = "Invalid login credentials")
+    @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody @ParameterObject LoginRequest request) {
         try {
             LoginResponse response = userService.authenticateUser(request);
@@ -66,12 +67,13 @@ public class UserController {
      * @param request The sign-up request containing user registration information.
      * @return A ResponseEntity indicating the success or failure of the registration process.
      */
-    @PostMapping("/signup")
+
     @Operation(summary = "User registration", description = "Registers a new user")
     @ApiResponse(responseCode = "200", description = "User registered successfully",
             content = @Content(mediaType = "text/plain"))
     @ApiResponse(responseCode = "400", description = "Error during registration",
             content = @Content(mediaType = "text/plain"))
+    @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody SignUpRequest request) {
         try {
             userService.signupUser(request);
@@ -90,7 +92,7 @@ public class UserController {
      * @param request    Login request to verify if the user has admin privileges.
      * @return A ResponseEntity containing a list of all users or an error message.
      */
-    @PostMapping("/allUsers")
+
     @Operation(summary = "Get all users", description = "Retrieves a list of all users. Requires admin privileges.")
     @ApiResponse(responseCode = "200", description = "List of all users",
             content = @Content(mediaType = "application/json",
@@ -101,6 +103,7 @@ public class UserController {
             content = @Content(mediaType = "text/plain"))
     @ApiResponse(responseCode = "500", description = "Internal server error",
             content = @Content(mediaType = "text/plain"))
+    @PostMapping("/allUsers")
     public ResponseEntity<?> getAllUsers(@RequestHeader("Authorization") String authHeader,
                                          @RequestBody @ParameterObject LoginRequest request) {
         if (!userService.authStatus(authHeader)) {
