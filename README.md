@@ -1,7 +1,7 @@
 # KRYPTONITE
 ## Team Introduction
 
-Welcome to the documentation of our project. This project is a collaborative effort brought to life by a dedicated team of four, each contributing unique skills and expertise. Our application is hosted at [https://kryptonite.uksouth.cloudapp.azure.com/](https://kryptonite.uksouth.cloudapp.azure.com/) , showcasing the culmination of our hard work and dedication.
+Welcome to the documentation of our project. This project is a collaborative effort brought to life by a dedicated team of four, each contributing unique skills and expertise. Our application is hosted at [https://kryptonite.uksouth.cloudapp.azure.com/](https://kryptonite.uksouth.cloudapp.azure.com/) , showcasing the culmination of our hard work and dedication. A YouTube video of our project is hosted at: 
 
 
 This project was brought to life by a dedicated team of four, each contributing unique skills and expertise. Our team comprises:
@@ -26,7 +26,7 @@ This project was brought to life by a dedicated team of four, each contributing 
    - Worked on the frontend development, primarily using React.
    - Collaborated closely with Team Member 4 for frontend tasks.
 
-4. **Jenny Wilson**   
+4. **Jennie Wilson**   
    **Contributions:** 
    - Concentrated on developing the frontend, utilizing React.
    - Paired with Team Member 3 to ensure a cohesive and functional frontend design.
