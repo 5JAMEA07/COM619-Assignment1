@@ -11,7 +11,9 @@ const SidebarView = ({ user }) => {
             <Link to="/" className="nav-link">
                 Main Page
             </Link>
+
             <a href="https://kryptonite.uksouth.cloudapp.azure.com/api/swagger-ui/index.html#/" className="nav-link" target="_blank" rel="noopener noreferrer">
+
                 Swagger API
             </a>
             {user && user.userRole === 'ADMINISTRATOR' && (

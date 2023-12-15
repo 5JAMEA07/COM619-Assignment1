@@ -15,7 +15,10 @@ const LoginPage = ({ onLoginSuccess, onLoginFail }) => {
         };
 
         try {
+
             const response = await axios.post("https://kryptonite.uksouth.cloudapp.azure.com/api/login", loginDetails);
+
+
             // If successful, save the token and user data to session storage
             sessionStorage.setItem('authToken', response.data.token);
             sessionStorage.setItem('user', JSON.stringify(response.data.user));
