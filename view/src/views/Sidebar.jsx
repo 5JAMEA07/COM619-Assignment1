@@ -12,8 +12,7 @@ const SidebarView = ({ user }) => {
                 Main Page
             </Link>
 
-            
-            <a href="http://localhost:8080/api/swagger-ui/index.html#/" className="nav-link" target="_blank" rel="noopener noreferrer">
+            <a href="https://kryptonite.uksouth.cloudapp.azure.com/api/swagger-ui/index.html#/" className="nav-link" target="_blank" rel="noopener noreferrer">
 
                 Swagger API
             </a>
