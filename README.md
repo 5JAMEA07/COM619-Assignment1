@@ -1,7 +1,7 @@
 # KRYPTONITE
 ## Team Introduction
 
-Welcome to the documentation of our project. This project is a collaborative effort brought to life by a dedicated team of four, each contributing unique skills and expertise. Our application is hosted at [https://kryptonite.uksouth.cloudapp.azure.com/](https://kryptonite.uksouth.cloudapp.azure.com/) , showcasing the culmination of our hard work and dedication. A YouTube video of our project is hosted at: 
+Welcome to the documentation of our project. This project is a collaborative effort brought to life by a dedicated team of four, each contributing unique skills and expertise. Our application is hosted at [https://kryptonite.uksouth.cloudapp.azure.com/](https://kryptonite.uksouth.cloudapp.azure.com/) , showcasing the culmination of our hard work and dedication. A YouTube video of our project is hosted at: https://youtu.be/nFEl96n28KM
 
 
 This project was brought to life by a dedicated team of four, each contributing unique skills and expertise. Our team comprises:
